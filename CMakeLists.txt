@@ -10,13 +10,13 @@ add_executable(OpenGL_Tutorial
 #                             "D:\\Program Files\\glad\\include"    
 # )
 target_include_directories(OpenGL_Tutorial PUBLIC 
-                            "$ENV{GLAD_DIR}\\include" 
-                            "$ENV{GLFW_DIR}\\include"    
+                            "$ENV{GLAD_DIR}/include" 
+                            "$ENV{GLFW_DIR}/include"    
 )
-message("$ENV{GLAD_DIR}\\include")
-message("$ENV{GLFW_DIR}\\include")
+message("$ENV{GLAD_DIR}/include")
+message("$ENV{GLFW_DIR}/include")
 if(MSVC)
     target_compile_definitions(OpenGL_Tutorial PRIVATE )
-    target_link_directories(OpenGL_Tutorial PUBLIC "D:\\Program Files\\glfw-3.4.bin.WIN64\\lib-vc2022")
+    target_link_directories(OpenGL_Tutorial PUBLIC "$ENV{GLFW_DIR}/lib")
     target_link_libraries(OpenGL_Tutorial glfw3.lib)
 endif()
