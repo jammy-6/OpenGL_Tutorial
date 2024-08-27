@@ -41,6 +41,8 @@ static unsigned int CreateShader(const std::string& vertexShader, const std::str
     glAttachShader(program, fs);
 	glLinkProgram(program);
     glValidateProgram(program);
+    glDeleteShader(vs);
+    glDeleteShader(fs);
     return program;
 }
 
@@ -99,7 +101,7 @@ int main()
     std::string fragmentShader =
         "#version 330 core\n"
         "layout(location = 0) out vec4 color;\n"
-        "void main(){ color = vec4(1.0, 0.0, 0.0, 1.0 ); }\n";
+        "void main(){ color = vec4(0.0, 1.0, 0.0, 1.0 ); }\n";
 
 	unsigned int program = CreateShader(vertexShader, fragmentShader);
 	glUseProgram(program);
