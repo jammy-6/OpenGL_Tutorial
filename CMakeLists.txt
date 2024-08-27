@@ -8,27 +8,14 @@ include_directories(
 					"$ENV{GLFW_DIR}/include"
 					"${CMAKE_SOURCE_DIR}/build"
 )
+#遍历子文件夹进行批量配置
+file(GLOB SUBDIRS RELATIVE ${CMAKE_SOURCE_DIR}/src ${CMAKE_SOURCE_DIR}/src/*)
+foreach(subdir ${SUBDIRS})
+    if(EXISTS ${CMAKE_SOURCE_DIR}/src/${subdir}/CMakeLists.txt)
+        add_subdirectory(${CMAKE_SOURCE_DIR}/src/${subdir})
+    endif()
+endforeach()
 
-add_executable(05_Vertex_Buffer_And_Vertex_Attribute 
-                src/glad.c
-                src/05_Vertex_Buffer_And_Vertex_Attribute/main.cpp
-)
-target_link_directories(05_Vertex_Buffer_And_Vertex_Attribute  PUBLIC "$ENV{GLFW_DIR}/lib")
-target_link_libraries(05_Vertex_Buffer_And_Vertex_Attribute  glfw3.lib)
-
-add_executable(07_Writing_A_Shader 
-                src/glad.c
-                src/07_Writing_A_Shader/main.cpp
-)
-target_link_directories(07_Writing_A_Shader PUBLIC "$ENV{GLFW_DIR}/lib")
-target_link_libraries(07_Writing_A_Shader glfw3.lib)
-
-add_executable(08_Dealing_A_Shader 
-                src/glad.c
-                src/08_Dealing_A_Shader/main.cpp
-)
-target_link_directories(08_Dealing_A_Shader PUBLIC "$ENV{GLFW_DIR}/lib")
-target_link_libraries(08_Dealing_A_Shader glfw3.lib)
 # target_include_directories(OpenGL_Tutorial PUBLIC 
 #                             "D:\\Program Files\\glfw-3.4.bin.WIN64\\include" 
 #                             "D:\\Program Files\\glad\\include"    
@@ -37,4 +24,5 @@ target_link_libraries(08_Dealing_A_Shader glfw3.lib)
 #message("$ENV{GLAD_DIR}/include")
 #message("$ENV{GLFW_DIR}/include")
 #target_compile_definitions(OpenGL_Tutorial PRIVATE )
-
+#add_subdirectory("src/09_Index_Buffer")
+# Add all subdirectories containing CMakeLists.txt
